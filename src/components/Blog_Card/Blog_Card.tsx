@@ -12,7 +12,7 @@ function Blog_Card({ items }: { items: any }) {
         </div>
         <div className="card_footer">
         <div className="button">
-            {items.button}
+            See More.
         </div>
         </div>
     </div>

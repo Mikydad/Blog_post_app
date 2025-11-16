@@ -7,7 +7,6 @@ function Homepage() {
   
   return (
     <div className="main_container">
-        <Navigation />
         <Hero />
         <Blogcard_holder />
         <Footer />

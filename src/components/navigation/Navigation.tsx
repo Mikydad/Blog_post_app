@@ -1,19 +1,20 @@
 import './navigation.css'
+import { Link, NavLink } from 'react-router-dom'
 function Navigation() {
-  return (
+return (
     <div className="main_navigation_container">
         <div className="right_side_container">
-            <a href='#'>Blogify</a>
+            <Link to="/">Blogify</Link>
         </div>
         <div className="left_side_container">
             <ul>
-                <a href='#'><li>Posts</li></a>
-                <a href='#'><li>Create Post</li></a>
-                <a href='#'><li>About Us</li></a>
+                <li><NavLink to="/posts">Posts</NavLink></li>
+                <li><NavLink to="/create">Create Post</NavLink></li>
+                <li><NavLink to="/about">About Us</NavLink></li>
             </ul>
         </div>
     </div>
-  )
+)
 }
 
 export default Navigation
