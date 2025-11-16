@@ -1,0 +1,71 @@
+/* Styles for PostDetailPage - improved contrast */
+:root{
+  --bg: #435f93;
+  --card: #071226;
+  --muted: #9aa4b2;
+  --accent: #6dd3ff;
+  --text: #e6eef6; /* high contrast text */
+}
+
+.post-detail-container{
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 28px;
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  color: var(--text);
+  box-shadow: 0 10px 30px rgba(2,6,23,0.7);
+}
+
+.post-detail-container h1{
+  margin: 0 0 8px 0;
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+  line-height: 1.18;
+  color: var(--text);
+  font-weight: 600; /* slightly lighter for easier reading */
+}
+
+.post-date{
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 18px;
+  opacity: 0.95;
+}
+
+.post-description{
+  color: rgba(230,238,246,0.96);
+  font-size: 1.04rem;
+  line-height: 1.9;
+  white-space: pre-wrap; /* keep line breaks */
+  font-weight: 400; /* normal weight */
+  /* removed heavy text-shadow for cleaner legibility */
+}
+
+/* Images inside the description (if any) */
+.post-description img{
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 18px auto;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* Small utilities */
+.post-detail-container .meta{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  color:var(--muted);
+  margin-bottom:12px;
+}
+
+@media (max-width:720px){
+  .post-detail-container{
+    margin: 20px 12px;
+    padding: 18px;
+    border-radius:10px;
+  }
+  .post-description{font-size:1rem}
+}
