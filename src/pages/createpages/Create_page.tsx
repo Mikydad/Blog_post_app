@@ -1,18 +1,40 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAppContext } from '../../context/AppContext'
+
 import './createpage.css'
 
 const Create_page: React.FC = () => {
   const [title, setTitle] = useState<string>('')
   const [description, setDescription] = useState<string>('')
 
-  const handle_description_change = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const navigate = useNavigate()
+  const { createPost } = useAppContext() // ✅ get createPost from context
+
+  const handle_description_change = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setDescription(event.target.value)
   }
 
-  const addPost = (e?: React.FormEvent) => {
-    e && e.preventDefault()
-    // TODO: wire this up to your post-creation logic / API
-    console.log('create post', { title, description })
+  const handleCreatePost = (e: React.FormEvent) => {
+    e.preventDefault()
+
+    // ✅ basic validation BEFORE doing anything else
+    if (!title.trim() || !description.trim()) {
+      alert('Please fill out all the fields')
+      return
+    }
+
+    // ✅ call context function, NOT this handler again
+    const newPostId = createPost({ title, description })
+
+    // ✅ optional: clear the form
+    setTitle('')
+    setDescription('')
+
+    // ✅ navigate to the new post page
+    navigate(`/posts/${newPostId}`)
   }
 
   const resetForm = () => {
@@ -27,8 +49,10 @@ const Create_page: React.FC = () => {
         <p className="headline-sub">Write something people will love to read.</p>
       </div>
 
-      <form className="detail" onSubmit={(e) => addPost(e)}>
-        <label htmlFor="title" className="label">Title</label>
+      <form className="detail" onSubmit={handleCreatePost}>
+        <label htmlFor="title" className="label">
+          Title
+        </label>
         <input
           id="title"
           value={title}
@@ -37,11 +61,13 @@ const Create_page: React.FC = () => {
           className="text-input"
         />
 
-        <label htmlFor="description" className="label">Body</label>
+        <label htmlFor="description" className="label">
+          Body
+        </label>
         <p className="helper">Provide details for your post below</p>
         <textarea
           id="description"
-          name="Description"
+          name="description"
           value={description}
           onChange={handle_description_change}
           rows={12}
@@ -49,8 +75,12 @@ const Create_page: React.FC = () => {
         />
 
         <div className="buttons">
-          <button type="submit" className="btn primary">Create post</button>
-          <button type="button" className="btn" onClick={resetForm}>Cancel</button>
+          <button type="submit" className="btn primary">
+            Create post
+          </button>
+          <button type="button" className="btn" onClick={resetForm}>
+            Cancel
+          </button>
         </div>
       </form>
     </main>
