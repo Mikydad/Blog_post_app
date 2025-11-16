@@ -1,0 +1,14 @@
+.blog_card_main_container{
+    background-color: #92487A;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 400px;
+    color: white;
+    justify-content: space-between;
+    border-radius: 10px;
+    border-width: 0.2px;
+    margin: 15px;
+}
+ 

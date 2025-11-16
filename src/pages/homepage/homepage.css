@@ -1,0 +1,10 @@
+*{
+    margin: 0;
+}
+
+.main_container {
+    background: linear-gradient(135deg, #643399 0%, #435b84 100%);
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}

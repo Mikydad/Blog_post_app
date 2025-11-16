@@ -1,0 +1,161 @@
+:root{
+    --bg-1: #0f1724;
+    --bg-2: #071020;
+    --primary: #4f63ff;
+    --primary-dark: #3a4ce0;
+    --text: #ffffff;
+    --muted: rgba(255,255,255,0.85);
+    --glass: rgba(255,255,255,0.06);
+    --radius: 10px;
+    --gap: 15px;
+    --shadow: 0 8px 30px rgba(2,6,23,0.6);
+    --focus: rgba(79,99,255,0.18);
+    --max-width: 900px;
+    --measure: 650px;
+    --pad-vertical: 60px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* Main container */
+.hero_main_container {
+    position: relative;
+    overflow: hidden;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--pad-vertical) 20px;
+    min-height: 80vh;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Decorative soft gradient / shape */
+.hero_main_container::before{
+    content: "";
+    position: absolute;
+    inset: -20% auto auto -10%;
+    width: 60%;
+    height: 140%;
+    background: radial-gradient(closest-side at 20% 30%, rgba(79,99,255,0.12), transparent 30%),
+                            radial-gradient(closest-side at 80% 70%, rgba(255,255,255,0.03), transparent 30%);
+    transform: rotate(-12deg);
+    filter: blur(36px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Ensure children are above decoration */
+.hero_main_container > * { position: relative; z-index: 1; }
+
+/* Title text */
+.title {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    color: white;
+    text-shadow: 0 6px 30px rgba(11,18,36,0.6);
+}
+
+/* Sub description text */
+.description {
+    padding: 55px 25px;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    max-width: var(--measure);
+    margin: 0 auto;
+    color: white;
+    opacity: 0.95;
+    line-height: 1.6;
+    
+}
+
+/* Buttons container */
+.buttons {
+    padding-top: 10px;
+    display: flex;
+    gap: var(--gap);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* General button styling */
+.buttons button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+    transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(6px);
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Primary button (left one) */
+.buttons .primary {
+    background: linear-gradient(180deg, var(--primary), var(--primary-dark));
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.buttons .primary:hover {
+    transform: translateY(-4px) scale(1.02);
+    background: linear-gradient(180deg, var(--primary-dark), #364bdf);
+    box-shadow: 0 14px 40px rgba(63,84,255,0.18);
+}
+
+.buttons .primary:active { transform: translateY(-1px) scale(0.995); }
+.buttons .primary:focus {
+    outline: none;
+    box-shadow: 0 0 0 6px var(--focus), 0 14px 40px rgba(63,84,255,0.12);
+    border-radius: var(--radius);
+}
+
+/* Secondary button (right one) */
+.buttons .secondary {
+    background: var(--glass);
+    color: var(--text);
+    border: 2px solid rgba(255,255,255,0.12);
+    transition: background-color .18s ease, transform .18s ease, border-color .18s ease;
+}
+
+.buttons .secondary:hover {
+    background-color: rgba(255,255,255,0.08);
+    transform: translateY(-3px);
+    border-color: rgba(255,255,255,0.18);
+}
+
+.buttons .secondary:active { transform: translateY(-1px) scale(0.997); }
+.buttons .secondary:focus {
+    outline: none;
+    box-shadow: 0 0 0 6px rgba(255,255,255,0.06);
+    border-radius: var(--radius);
+}
+
+/* Accessibility: visible focus for keyboard users */
+.buttons button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 6px rgba(255,255,255,0.06), 0 8px 30px rgba(2,6,23,0.45);
+}
+
+/* Small screens: stack and reduce spacing */
+@media (max-width: 520px) {
+    .hero_main_container { padding: 48px 18px; }
+    .buttons { gap: 10px; }
+    .buttons button { width: 100%; max-width: 320px; }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .buttons button,
+    .buttons .primary:hover,
+    .buttons .secondary:hover {
+        transition: none;
+        transform: none;
+    }
+    .hero_main_container::before { filter: none; transform: none; }
+}

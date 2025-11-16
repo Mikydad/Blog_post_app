@@ -1,0 +1,29 @@
+.main_navigation_container{
+    display: flex;
+    margin: 0;
+    justify-content:space-between;
+    padding: 20PX 10px;
+    background-color: hsl(0, 0%, 100%);
+}
+
+.left_side_container > ul{
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    margin: 0 10px;
+}
+.right_side_container {
+    margin: 0 20px;
+
+}
+
+li{
+    list-style-type: none;
+    text-decoration: none;
+    margin: 0 15px;
+}
+a{
+    text-decoration: none;
+    color: #000000;
+    font-weight: 500;
+}
