@@ -58,7 +58,9 @@
 
 .blog_card_main_container .card_footer{
     display:flex;
-    align-items:center;
+    justify-content: center;
+    align-items: center;
+    justify-content: center !important;
     justify-content:space-between;
     gap:10px;
 }
@@ -84,4 +86,22 @@
             -webkit-line-clamp:4;
             line-clamp:4;
         }
+}
+.button > button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.06);
+    color: var(--card-text);
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1;
+    border: 1px solid rgba(255,255,255,0.06);
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(10,12,20,0.25);
+    transition: transform 140ms ease, box-shadow 180ms ease, background 140ms ease, color 140ms ease;
+    will-change: transform, box-shadow;
+    -webkit-tap-highlight-color: transparent;
 }
