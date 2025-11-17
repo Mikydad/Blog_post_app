@@ -9,9 +9,14 @@ type CreatePostPayload = {
     title: String;
     description:String;
 }
+type UpdatePostPayLoad = {
+    title: string;
+    description: string;
+}
 type AppContextValue = {
     posts: Post[],
     createPost: (payload: CreatePostPayload) => String;
+    updatePost: (id: string, payload: UpdatePostPayLoad) => void;
 };
 
 const AppContext = createContext<AppContextValue | null>(null);
@@ -32,8 +37,12 @@ export const AppProvider: React.FC<{children: React.ReactNode}> = ({children}) =
         return addPost.id;
     };
 
+    const updatePost = (id: String, {title, description}: UpdatePostPayLoad) => {
+        setPosts((prev) => prev.map((posts) => posts.id === id ? {...posts, title, description} : posts))
+    }
+
     return(
-        <AppContext.Provider value = {{posts, createPost}}>
+        <AppContext.Provider value = {{posts, createPost, updatePost}}>
         {children}
         </AppContext.Provider>
     )

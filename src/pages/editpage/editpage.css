@@ -1,0 +1,126 @@
+/* Main container */
+.editpage_main_container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  color: #e6eef6;                  /* light text */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Headline section */
+.editpage_main_container .headline {
+  text-align: center;
+  color: #4f7cff;
+}
+
+.editpage_main_container .headline h1 {
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #4f7cff;
+}
+
+.editpage_main_container .headline-sub {
+  font-size: 1rem;
+  opacity: 0.8;
+  color: #4f7cff;
+}
+
+/* Form container */
+.editpage_main_container .detail {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+/* Labels */
+.editpage_main_container .label {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: -5px;
+}
+
+.editpage_main_container .helper {
+  font-size: 0.875rem;
+  opacity: 0.7;
+  margin-top: -10px;
+}
+
+/* Inputs */
+.editpage_main_container .text-input,
+.editpage_main_container .text-area {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.95);        /* solid dark input */
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  color: #e6eef6;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+/* Input hover + focus */
+.editpage_main_container .text-input:focus,
+.editpage_main_container .text-area:focus {
+  border-color: #7aa2ff;
+}
+
+/* Textarea */
+.editpage_main_container .text-area {
+  resize: none;
+  line-height: 1.5;
+}
+
+/* Buttons row */
+.editpage_main_container .buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Button styles */
+.editpage_main_container .btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: #e6eef6;
+  transition: all 0.2s ease;
+}
+
+.editpage_main_container .btn.primary {
+  background: #4f7cff;
+  color: #ffffff;
+  border: none;
+}
+
+.editpage_main_container .btn.primary:hover {
+  background: #3a63db;
+}
+
+.editpage_main_container .btn:hover {
+  background: rgba(255,255,255,0.18);
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .editpage_main_container {
+    padding: 2rem 1rem;
+  }
+
+  .editpage_main_container .buttons {
+    flex-direction: column;
+  }
+
+  .editpage_main_container .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
