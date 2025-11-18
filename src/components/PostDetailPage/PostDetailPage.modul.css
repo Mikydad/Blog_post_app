@@ -15,66 +15,112 @@
   border: 1px solid rgba(255,255,255,0.06);
   border-radius: 12px;
   color: var(--text);
-  box-shadow: 0 10px 30px rgba(2,6,23,0.7);
+  box-shadow: 0 10px 30px rgba(156, 159, 171, 0.7);
 }
-.button_bottom{
+/* Base Button */
+.button_bottom {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 10px 14px;
+
+  padding: 10px 16px;
   border-radius: 10px;
   margin: 8px 8px 0 0;
-  border: 1px solid rgba(255,255,255,0.04);
-  /* lighter, more translucent background so it doesn't darken the card */
-  background: linear-gradient(180deg, rgba(109,211,255,0.08), rgba(109,211,255,0.02));
+
+  background: linear-gradient(
+    180deg,
+    rgba(109, 211, 255, 0.12) 0%,
+    rgba(63, 184, 232, 0.06) 60%,
+    rgba(168, 182, 209, 0.02) 100%
+  );
+  border: 1px solid white;
+  border-width: 0.2px;
+
   color: var(--text);
   font-size: 0.95rem;
   font-weight: 600;
+
   cursor: pointer;
-  transition: transform .12s ease, box-shadow .12s ease, background .12s ease, opacity .12s;
-  box-shadow: 0 6px 14px rgba(2,6,23,0.22);
   user-select: none;
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    background 0.12s ease,
+    opacity 0.12s ease;
+
+  box-shadow: 0 6px 14px rgba(2, 6, 23, 0.20);
 }
 
-/* Hover / active / focus states for better affordance */
-.button_bottom:hover{
+/* Hover */
+.button_bottom:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(2,6,23,0.28);
-  background: linear-gradient(180deg, rgba(109,211,255,0.14), rgba(109,211,255,0.04));
+  box-shadow: 0 12px 28px rgba(2, 6, 23, 0.28);
+  background: linear-gradient(
+    180deg,
+    rgba(98, 188, 227, 0.18),
+    rgba(109, 211, 255, 0.06)
+  );
 }
 
-.button_bottom:active{
+/* Active (pressed) */
+.button_bottom:active {
   transform: translateY(0);
-  box-shadow: 0 6px 12px rgba(2,6,23,0.18);
+  box-shadow: 0 6px 12px rgba(192, 194, 207, 0.16);
+  background: linear-gradient(
+    180deg,
+    rgba(68, 191, 252, 0.14),
+    rgba(18, 161, 223, 0.05)
+  );
 }
 
-.button_bottom:focus{
-  outline: 3px solid rgba(109,211,255,0.14);
-  outline-offset: 2px;
+/* Focus (keyboard accessibility) */
+.button_bottom:focus {
+  outline: 2px solid rgba(109, 211, 255, 0.35);
+  outline-offset: 3px;
 }
 
-/* Variants */
-.button_bottom.primary{
-  /* softer, lighter primary so it doesn't read as a heavy dark block */
-  background: linear-gradient(90deg, rgba(109,211,255,0.16), rgba(63,184,232,0.10));
-  color: var(--card);
+/* Primary Variant */
+.button_bottom.primary {
+  background: linear-gradient(
+    90deg,
+    rgba(109, 211, 255, 0.22),
+    rgba(63, 184, 232, 0.14)
+  );
   border: none;
+  color: var(--card);
+  box-shadow: 0 6px 16px rgba(18, 161, 223, 0.20);
 }
 
-.button_bottom.ghost{
+.button_bottom.primary:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(109, 211, 255, 0.30),
+    rgba(63, 184, 232, 0.20)
+  );
+}
+
+/* Ghost Variant */
+.button_bottom.ghost {
   background: transparent;
-  border: 1px solid rgba(255,255,255,0.04);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   color: var(--text);
 }
 
-/* Disabled state */
+.button_bottom.ghost:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Disabled */
 .button_bottom[disabled],
-.button_bottom.disabled{
+.button_bottom.disabled {
   opacity: 0.55;
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
+  background: rgba(255, 255, 255, 0.04);
 }
+
 .post-detail-container h1{
   margin: 0 0 8px 0;
   font-size: clamp(1.4rem, 2.6vw, 2rem);
