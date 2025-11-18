@@ -1,4 +1,4 @@
-import { Children, createContext, use, useContext, useState } from "react";
+import { Children, createContext, use, useContext, useEffect, useState } from "react";
 type Post = {
     id: String;
     title: String;
@@ -28,7 +28,21 @@ const AppContext = createContext<AppContextValue | null>(null);
 
 export const AppProvider: React.FC<{children: React.ReactNode}> = ({children}) => {
 
-    const [posts, setPosts] = useState<Post[]>([]);
+
+    //Load from Local Storage.
+  const [posts, setPosts] = useState<Post[]>(() => {
+        const stored = localStorage.getItem("posts")
+
+        return stored ? JSON.parse(stored) : [];
+     });
+
+
+     //2. Save to local storate
+     useEffect( () => {
+        localStorage.setItem("posts", JSON.stringify(posts));
+     }, [posts])
+
+
     const createPost =({title,description}:CreatePostPayload):String => {
         const addPost: Post = {
             id: crypto.randomUUID(),
