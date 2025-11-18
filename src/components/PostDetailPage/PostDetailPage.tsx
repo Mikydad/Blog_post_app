@@ -4,7 +4,7 @@ import './postdetailpage.css'
 
 const PostDetailPage: React.FC = () => {
   const { id } = useParams();
-  const { posts } = useAppContext();   // ✔ only call once
+  const { posts, deletePost } = useAppContext();   // ✔ only call once
 
   const navigate = useNavigate();
 
@@ -19,6 +19,13 @@ const PostDetailPage: React.FC = () => {
     navigate(`/posts/${post.id}/edit`);
   };
 
+  const handleDelete = () => {
+    const confirmDelete = window.confirm("Are you sure you wanna to delete?")
+    if(!confirmDelete) return;
+    deletePost(post.id);
+    navigate("/")
+  }
+
   return (
     <main className="post-detail-container">
       <h1>{post.title}</h1>
@@ -30,6 +37,7 @@ const PostDetailPage: React.FC = () => {
       <p className="post-description">{post.description}</p>
 
       <button onClick={handleEdit}>Edit</button>
+      <button onClick={handleDelete}>Delete</button>
     </main>
   );
 };
