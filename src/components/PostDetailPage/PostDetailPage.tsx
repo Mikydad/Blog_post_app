@@ -1,7 +1,6 @@
 import { useAppContext } from "../../context/AppContext";
 import { useNavigate, useParams } from "react-router-dom";
-import './postdetailpage.css'
-
+import './PostDetailPage.modul.css'
 const PostDetailPage: React.FC = () => {
   const { id } = useParams();
   const { posts, deletePost } = useAppContext();   // ✔ only call once
@@ -36,8 +35,8 @@ const PostDetailPage: React.FC = () => {
 
       <p className="post-description">{post.description}</p>
 
-      <button onClick={handleEdit}>Edit</button>
-      <button onClick={handleDelete}>Delete</button>
+      <button className="button_bottom" onClick={handleEdit}>Edit</button>
+      <button className="button_bottom" onClick={handleDelete}>Delete</button>
     </main>
   );
 };

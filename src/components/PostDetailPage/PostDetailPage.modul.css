@@ -1,0 +1,128 @@
+/* Styles for PostDetailPage - improved contrast */
+:root{
+  --bg: #435f93;
+  --card: #071226;
+  --muted: #9aa4b2;
+  --accent: #6dd3ff;
+  --text: #e6eef6; /* high contrast text */
+}
+
+.post-detail-container{
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 28px;
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  color: var(--text);
+  box-shadow: 0 10px 30px rgba(2,6,23,0.7);
+}
+.button_bottom{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin: 8px 8px 0 0;
+  border: 1px solid rgba(255,255,255,0.04);
+  /* lighter, more translucent background so it doesn't darken the card */
+  background: linear-gradient(180deg, rgba(109,211,255,0.08), rgba(109,211,255,0.02));
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease, opacity .12s;
+  box-shadow: 0 6px 14px rgba(2,6,23,0.22);
+  user-select: none;
+}
+
+/* Hover / active / focus states for better affordance */
+.button_bottom:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(2,6,23,0.28);
+  background: linear-gradient(180deg, rgba(109,211,255,0.14), rgba(109,211,255,0.04));
+}
+
+.button_bottom:active{
+  transform: translateY(0);
+  box-shadow: 0 6px 12px rgba(2,6,23,0.18);
+}
+
+.button_bottom:focus{
+  outline: 3px solid rgba(109,211,255,0.14);
+  outline-offset: 2px;
+}
+
+/* Variants */
+.button_bottom.primary{
+  /* softer, lighter primary so it doesn't read as a heavy dark block */
+  background: linear-gradient(90deg, rgba(109,211,255,0.16), rgba(63,184,232,0.10));
+  color: var(--card);
+  border: none;
+}
+
+.button_bottom.ghost{
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.04);
+  color: var(--text);
+}
+
+/* Disabled state */
+.button_bottom[disabled],
+.button_bottom.disabled{
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+.post-detail-container h1{
+  margin: 0 0 8px 0;
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+  line-height: 1.18;
+  color: var(--text);
+  font-weight: 600; /* slightly lighter for easier reading */
+}
+
+.post-date{
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 18px;
+  opacity: 0.95;
+}
+
+.post-description{
+  color: rgba(230,238,246,0.96);
+  font-size: 1.04rem;
+  line-height: 1.9;
+  white-space: pre-wrap; /* keep line breaks */
+  font-weight: 400; /* normal weight */
+  /* removed heavy text-shadow for cleaner legibility */
+}
+
+/* Images inside the description (if any) */
+.post-description img{
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 18px auto;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* Small utilities */
+.post-detail-container .meta{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  color:var(--muted);
+  margin-bottom:12px;
+}
+
+@media (max-width:720px){
+  .post-detail-container{
+    margin: 20px 12px;
+    padding: 18px;
+    border-radius:10px;
+  }
+  .post-description{font-size:1rem}
+}
