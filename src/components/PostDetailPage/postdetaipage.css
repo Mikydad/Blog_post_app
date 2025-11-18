@@ -1,0 +1,118 @@
+/* Full page background */
+.postdetail-page {
+  min-height: 100vh;
+  padding: 3rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: #f3f4f6; /* soft gray */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Main card */
+.postdetail-card {
+  width: 100%;
+  max-width: 720px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.8rem 1.6rem 1.6rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  border: 1px solid #e5e7eb;
+}
+
+/* Back button (text only) */
+.postdetail-back {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.postdetail-back:hover {
+  color: #374151;
+}
+
+/* Title */
+.postdetail-title {
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.25rem;
+}
+
+/* Date */
+.postdetail-date {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin-bottom: 1.2rem;
+}
+
+/* Body text */
+.postdetail-body {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #374151;
+  white-space: pre-wrap;
+  margin-bottom: 1.6rem;
+}
+
+/* Actions row */
+.postdetail-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* Buttons */
+.postdetail-btn {
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.08s ease;
+}
+
+/* Edit: primary, but soft */
+.postdetail-btn-edit {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+.postdetail-btn-edit:hover {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+/* Delete: subtle danger */
+.postdetail-btn-delete {
+  background: #ffffff;
+  border-color: #ef4444;
+  color: #b91c1c;
+}
+
+.postdetail-btn-delete:hover {
+  background: #fee2e2;
+  transform: translateY(-1px);
+}
+
+/* Mobile tweaks */
+@media (max-width: 600px) {
+  .postdetail-card {
+    padding: 1.4rem 1.1rem 1.4rem;
+  }
+
+  .postdetail-actions {
+    flex-direction: column;
+  }
+
+  .postdetail-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
