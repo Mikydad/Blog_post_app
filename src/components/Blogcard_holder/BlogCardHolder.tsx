@@ -6,7 +6,7 @@ function Blogcard_holder() {
     const { posts } = useAppContext()
 
     return (
-        <section className="blogcardholder_section">
+        <section id="blog-posts" className="blogcardholder_section">
             <header className="blogcardholder_header">
                 <h2 className="blogcardholder_title">Check out the latest blogs</h2>
                 <p className="blogcardholder_sub">Fresh posts from our community — read, learn, and share.</p>
