@@ -1,6 +1,6 @@
 import { Children, createContext, use, useContext, useEffect, useState } from "react";
 type Post = {
-    id: String;
+    _id: String;
     title: String;
     description: String;
     createdAt:String;
@@ -26,43 +26,65 @@ type AppContextValue = {
 
 const AppContext = createContext<AppContextValue | null>(null);
 
+const API_URL = "http://localhost:3000/api/posts";
+
 export const AppProvider: React.FC<{children: React.ReactNode}> = ({children}) => {
 
+    const [posts, setPosts] = useState<Post[]>([])
 
-    //Load from Local Storage.
-  const [posts, setPosts] = useState<Post[]>(() => {
-        const stored = localStorage.getItem("posts")
+    //Fetch from backend.
 
-        return stored ? JSON.parse(stored) : [];
-     });
-
-
-     //2. Save to local storate
-     useEffect( () => {
-        localStorage.setItem("posts", JSON.stringify(posts));
-     }, [posts])
-
-
-    const createPost =({title,description}:CreatePostPayload):String => {
-        const addPost: Post = {
-            id: crypto.randomUUID(),
-            title,
-            description,
-            createdAt: new Date().toISOString(),
-        }
-
-        setPosts((prev) => [addPost, ...prev]);
-
-        return addPost.id;
+    useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const res = await fetch(API_URL);
+        const data = await res.json();
+        setPosts(data);
+      } catch (err) {
+        console.error("Failed to load posts", err);
+      }
     };
 
-    const updatePost = (id: string, {title, description}: UpdatePostPayLoad) => {
-        setPosts((prev) => prev.map((post) => post.id === id ? {...post, title, description} : post))
-    }
+    fetchPosts();
+  }, []);
 
-    const deletePost = (id: string): void => {
-    setPosts((prev) => prev.filter((post) => post.id !== id));
+     //Send to Backend.
+
+    //Load from Local Storage.
+//   const [posts, setPosts] = useState<Post[]>(() => {
+//         const stored = localStorage.getItem("posts")
+
+//         return stored ? JSON.parse(stored) : [];
+//      });
+
+
+//      //2. Save to local storate
+//      useEffect( () => {
+//         localStorage.setItem("posts", JSON.stringify(posts));
+//      }, [posts])    
+
+     //load to backend.
+
+     const createPost = async ({ title, description }: CreatePostPayload): Promise<string> => {
+    const res = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title, description }),
+    });
+
+    const newPost = await res.json();
+    setPosts((prev) => [newPost, ...prev]);
+
+    return newPost._id;
   };
+
+//     const updatePost = (id: string, {title, description}: UpdatePostPayLoad) => {
+//         setPosts((prev) => prev.map((post) => post.id === id ? {...post, title, description} : post))
+//     }
+
+//     const deletePost = (id: string): void => {
+//     setPosts((prev) => prev.filter((post) => post.id !== id));
+//   };
 
 
 
